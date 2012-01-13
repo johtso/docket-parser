@@ -31,10 +31,8 @@ def iterparse_fromstring(text, fields):
 
 def iterparse(fh, fields):
     """Iteratively parse a bell county court docket"""
-    # fields = [[Field(*field) for field in row] for row in fields]
-    lines = (line.rstrip('\n') for line in fh)
+    lines = (line.rstrip('\r\n') for line in fh)
 
-    next(lines) # skip first line "TITLE: DOCKET2C.HTM."
     # skip all heading lines and the following 4 lines.
     data_lines = iterskip(lines, is_heading, 4)
     for result in iterparse_lines(data_lines, fields):

@@ -22,5 +22,5 @@ page = requests.get('http://www.bellcountytx.com/Countycoor/CSTMR/DOCKET2C.HTM')
 
 docket = extract_docket_text(page)
 
-for result in iterparse_fromstring(docket, FIELDS):
+for result in list(iterparse_fromstring(docket, FIELDS))[:10]:
     print result
